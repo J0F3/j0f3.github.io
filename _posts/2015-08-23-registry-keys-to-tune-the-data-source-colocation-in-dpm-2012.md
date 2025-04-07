@@ -29,4 +29,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft Data Protection Manager\Collocat
 ```
 Values between 1 and 8 are possible. MS recommends a value of 3 for large scale environments.
 
-For more details, see: [http://blogs.technet.com/b/dpm/archive/2013/07/09/dpm-how-to-plan-for-protecting-vms-in-private-cloud-deployments.aspx](http://blogs.technet.com/b/dpm/archive/2013/07/09/dpm-how-to-plan-for-protecting-vms-in-private-cloud-deployments.aspx) and [https://technet.microsoft.com/en-us/library/jj628128.aspx](https://technet.microsoft.com/en-us/library/jj628128.aspx)
+For more details, see: [https://blogs.technet.com/b/dpm/archive/2013/07/09/dpm-how-to-plan-for-protecting-vms-in-private-cloud-deployments.aspx](https://blogs.technet.com/b/dpm/archive/2013/07/09/dpm-how-to-plan-for-protecting-vms-in-private-cloud-deployments.aspx) and [https://technet.microsoft.com/en-us/library/jj628128.aspx](https://technet.microsoft.com/en-us/library/jj628128.aspx)

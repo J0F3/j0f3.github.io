@@ -28,7 +28,7 @@ So I decided to write my own short guide with the needed steps to get the VMFlee
 # Prerequisites
 
 * VMFleet Files from GitHub: [https://github.com/Microsoft/diskspd](https://github.com/Microsoft/diskspd){:target="_blank"}
-* diskspd.exe which is available at [http://aka.ms/diskspd](http://aka.ms/diskspd){:target="_blank"}
+* diskspd.exe which is available at [https://aka.ms/diskspd ](https://aka.ms/diskspd ){:target="_blank"}
 * A &nbsp;VHDX file with installed Windows Server 2012 R2 / 2016&nbsp;**Core** and the password of the local Administrator account&nbsp;set. (sysprep must not be run!).  A fixed VHDX file is recommended to eliminate &#8220;warmup&#8221; effects when starting the test runs.
 
     >**Note:** The VHDX should be at least 20GB big because the VMFleet Scripts will create a load test file of 10GB by default.

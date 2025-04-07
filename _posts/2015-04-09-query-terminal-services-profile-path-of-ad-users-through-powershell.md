@@ -8,7 +8,7 @@ tags:
   - Active Directory
 ---
 
-If you like to query Terminal Services or Remote Desktop Server Profile Path with PowerShell you cannot use the Get-ADUser Cmdlet. Instead you have to go through ADSI. The Scripting Guy has explained this in detail on his blog: [http://blogs.technet.com/b/heyscriptingguy/archive/2008/10/23/how-can-i-edit-terminal-server-profiles-for-users-in-active-directory.aspx](http://blogs.technet.com/b/heyscriptingguy/archive/2008/10/23/how-can-i-edit-terminal-server-profiles-for-users-in-active-directory.aspx){:traget="_blank"}
+If you like to query Terminal Services or Remote Desktop Server Profile Path with PowerShell you cannot use the Get-ADUser Cmdlet. Instead you have to go through ADSI. The Scripting Guy has explained this in detail on his blog: [https://blogs.technet.com/b/heyscriptingguy/archive/2008/10/23/how-can-i-edit-terminal-server-profiles-for-users-in-active-directory.aspx](https://blogs.technet.com/b/heyscriptingguy/archive/2008/10/23/how-can-i-edit-terminal-server-profiles-for-users-in-active-directory.aspx){:traget="_blank"}
 
 This works basically very well for all user object where the path for the Terminal Services Profile is set or was set sometime in the past and is now empty. But if you have a user object for which the Terminal Services settings in AD were never touched you get a funky error message:
   

@@ -22,4 +22,4 @@ To change the certificate on the Session Hosts manually do the following:
    ```
 
 The process ist also documented in detail at:  
-[http://blogs.technet.com/b/askperf/archive/2014/05/28/listener-certificate-configurations-in-windows-server-2012-2012-r2.aspx](http://blogs.technet.com/b/askperf/archive/2014/05/28/listener-certificate-configurations-in-windows-server-2012-2012-r2.aspx){:target="_blank"}
+[https://blogs.technet.com/b/askperf/archive/2014/05/28/listener-certificate-configurations-in-windows-server-2012-2012-r2.aspx](https://blogs.technet.com/b/askperf/archive/2014/05/28/listener-certificate-configurations-in-windows-server-2012-2012-r2.aspx){:target="_blank"}

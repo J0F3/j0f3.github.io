@@ -26,7 +26,7 @@ Then I had a look in SCVMM and found this, not very instructive, error: ![VMMErr
 
 So I digged in a little deeper and discovered on the gateway VM that SCVMM adds the external address for the tenants with the port range 1-49151. So that does explains why you can not forward Port over 49152 on multi tenant Windows Server NAT Gateway: ![Get-NetNatExternalAddress](/assets/images/Get-NetNatExternalAddress.png)
 
-Probably the SCVMM defines this port range for the external address because all ports above 49151 where per [RFC6335](http://tools.ietf.org/html/rfc6335#section-6){:target="_blank"} actually destined for dynamic ports or private ports. In Windows the this range is also specified for the dynamic client port range for outgoing connections. (RPC Communication and so forth)
+Probably the SCVMM defines this port range for the external address because all ports above 49151 where per [RFC6335](https://tools.ietf.org/html/rfc6335#section-6){:target="_blank"} actually destined for dynamic ports or private ports. In Windows the this range is also specified for the dynamic client port range for outgoing connections. (RPC Communication and so forth)
 
 ## Bonus, Possible solutions
 

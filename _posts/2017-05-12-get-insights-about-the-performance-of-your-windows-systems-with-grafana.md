@@ -130,6 +130,6 @@ To further customize the data and visualization to your specific needs you can:
 
 * Add further perfmon counters to collect to the telegraf agent configuration file
 * For more information, consult the official telegraf documentation on GitHub:  [https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters)
-* Create custom graphs and Dashboards in Grafana  [http://docs.grafana.org/guides/getting_started/#dashboards-panels-rows-the-building-blocks-of-grafana](http://docs.grafana.org/guides/getting_started/#dashboards-panels-rows-the-building-blocks-of-grafana)
+* Create custom graphs and Dashboards in Grafana  [https://docs.grafana.org/guides/getting_started/#dashboards-panels-rows-the-building-blocks-of-grafana](https://docs.grafana.org/guides/getting_started/#dashboards-panels-rows-the-building-blocks-of-grafana)
 * Get more pre built dashboards from the community  
 [https://grafana.com/dashboards?dataSource=influxdb&collector=Telegraf](https://grafana.com/dashboards?dataSource=influxdb&collector=Telegraf)

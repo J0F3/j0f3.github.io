@@ -13,7 +13,7 @@ tags:
 ---
 
 >**Update 09.03.2016:**  
-Although the setup just works fine in the VM and you can even provisioning Subscriptions and Tenant VMs there are some serious issues with networking when using this nested setup. As soon as you connect to a fabric VM (with RDP or VM Console) the VM with the virtual Hyper-V Host will crash. Many thanks to [Alain Vetier](http://www.int2skynet.net/){:target="_blank"} for pointing this out and sharing his finding here! See also his comments below.
+Although the setup just works fine in the VM and you can even provisioning Subscriptions and Tenant VMs there are some serious issues with networking when using this nested setup. As soon as you connect to a fabric VM (with RDP or VM Console) the VM with the virtual Hyper-V Host will crash. Many thanks to [Alain Vetier](https://www.int2skynet.net/ ){:target="_blank"} for pointing this out and sharing his finding here! See also his comments below.
 {: .notice--danger}
 
 Last week Microsoft released a first preview of the Microsoft Azure Stack. The software stack which allows you to run Azure in your own datacenter.
@@ -79,6 +79,6 @@ Set-VMProcessor -VMName azurestackpoc -ExposeVirtualizationExtensions $true
 
 Now start the VM and answer the question of the Windows Setup and the login with local Administrator account.
 
-If you have less than 96GB RAM assigned to the VM you have to tweak the deployment script before you start the setup. Daniel Neumann has written an excellent blog post about the necessary modifications: [http://www.danielstechblog.io/microsoft-azure-stack-technical-preview-on-lower-hardware/](http://www.danielstechblog.io/microsoft-azure-stack-technical-preview-on-lower-hardware/)
+If you have less than 96GB RAM assigned to the VM you have to tweak the deployment script before you start the setup. Daniel Neumann has written an excellent blog post about the necessary modifications: [https://www.danielstechblog.io/microsoft-azure-stack-technical-preview-on-lower-hardware/](https://www.danielstechblog.io/microsoft-azure-stack-technical-preview-on-lower-hardware/)
 
 Now, finally, you can run the PowerShell deployment script (Deploy Azure Stack.ps1) as it is described in the original documentation from Microsoft. The script will take several hours to finish. So better get you a cup of coffee or have a "little" break and hope everything goes well. 😉 If it does, you will get a functional Azure Stack installation in a VM.

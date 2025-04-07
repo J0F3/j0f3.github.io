@@ -15,7 +15,7 @@ In a network with Hyper-V Network Virtualization (using NVGRE encapsulation) the
 
 ## The problem with Linux VMs
 
-For VMs running Windows Server 2008 or newer this should not be a Problem because Hyper-V has a mechanism which lowers the MTU size for the NIC of the VM automatically if needed. (Documented on the [TechNet Wiki](http://social.technet.microsoft.com/wiki/contents/articles/23833.windows-server-2012-r2-network-virtualization-nvgre-mtu-reduction.aspx){:target="_blank"}).
+For VMs running Windows Server 2008 or newer this should not be a Problem because Hyper-V has a mechanism which lowers the MTU size for the NIC of the VM automatically if needed. (Documented on the [TechNet Wiki](https://social.technet.microsoft.com/wiki/contents/articles/23833.windows-server-2012-r2-network-virtualization-nvgre-mtu-reduction.aspx){:target="_blank"}).
 
 But with VMs running Linux you could run in a problem because the automatically MTU size reduction seem to not function correctly with Linux VMs: [https://support.microsoft.com/en-us/kb/3021753/](https://support.microsoft.com/en-us/kb/3021753/){:target="_blank"}
 
