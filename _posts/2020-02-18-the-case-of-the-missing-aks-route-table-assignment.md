@@ -14,8 +14,9 @@ tags:
   - IaC
 ---
 ## TL;DR
-Note: If you use the advanced networking (Azure CNI) option then this post is not relevant for you as in that case no route table and UDR is involved.
-{: .notice}
+
+> If you use the advanced networking (Azure CNI) option then this post is not relevant for you as in that case no route table and UDR is involved.
+{: .prompt-info}
 
 By default an AKS cluster is created with the 'kubenet' aka. basic networking option which depends highly on Azure 'User Defined Routing' (UDR). Therefore during the deployment of the AKS cluster a route table Azure resource is automatically created and assigned to the virtual subnet of the AKS cluster worker nodes. This is how it works at least when you use all the defaults where the Azure virtual network is also managed and automatically created by AKS.
 
@@ -29,7 +30,8 @@ A more in depth look at the AKS networking options can be found in the official 
 
 To understand the purpose of the route table we need to have look to the high level architecture of an AKS cluster first.
 
-{% include figure image_path="/assets/images/aks-routing-table.png" alt="AKS Kubenet overview" caption="Source: Microsoft" %}
+![ASK Routing](/assets/images/aks-routing-table.png)
+_Source: Microsoft_
 
 Basically seen on a very simple level an AKS cluster consists of the following three main parts:
 
@@ -46,16 +48,16 @@ To overcome this limitation, a network address translation (NAT) gets configured
 
 These custom routes allows then the Pods on one node to communicate across the Azure virtual network with Pods running on the other nodes although the Pod IP addresses are actually not part of the address range of the Azure virtual network.
 
-> **Note:** This little "trick" with the route table is also the reason for the maximum number of nodes of an AKS cluster with kubenet networking. An Azure UDR route table supports a maximum of 400 routes, thus the cluster can not have more than 400 nodes.
-{: .notice--info}
+> This little "trick" with the route table is also the reason for the maximum number of nodes of an AKS cluster with kubenet networking. An Azure UDR route table supports a maximum of 400 routes, thus the cluster can not have more than 400 nodes.
+{: .prompt-tip}
 
 ## So where can I find this route table
 
 When you look in the Azure Portal (or even with CLI or PowerShell) after the route table resource of an AKS cluster you may get some question marks. When you look in your resource group where you have initially deployed AKS you see nothing else than the Kubernetes service resource it self but there is no trace of a route table resource. This is because every AKS cluster creates an additional resource group to which it deploys the resources managed by itself. These are for examples the virtual machines for the worker nodes, a Azure virtual network and also the famous route table.
 You can locate the automatically created, 'node resource group' in the same subscription simply by its name which is always in the format `mc_<your RG name>_<AKS cluster name>_<region>`. Alternatively you can query the name of the resource group with the following Azure CLI command: `az aks show --name <AKS cluster name> --resource-group <your RG name> --query nodeResourceGroup`.
 
-> **Note:** If the route table resource does not exist at all in the node resource group (the RG with the 'mc_' prefix in the name) then you are facing another problem during the initial provisioning of the AKS cluster. The problems described here are these where the AKS cluster is successfully deployed and the route table actually exists but is simply not connected/assigned to the AKS nodes subnet.
-{: .notice--warning}
+>If the route table resource does not exist at all in the node resource group (the RG with the 'mc_' prefix in the name) then you are facing another problem during the initial provisioning of the AKS cluster. The problems described here are these where the AKS cluster is successfully deployed and the route table actually exists but is simply not connected/assigned to the AKS nodes subnet.
+{: .prompt-warning}
 
 ## That's fine, what could possibly go wrong
 Well as long as you just deploy a default configuration with the basic/kubenet networking option selected you may have never a problem with the route table. The "fun" begins as soon as you want to use your own Azure virtual network for the AKS cluster and use IaC tools like Terraform or ARM templates for the deployment (what you of course should do). The main source of the problem is that the Azure virtual network is not anymore created and fully controlled by ASK itself, much more it is now created by you resp. your IaC code and AKS will just use a specified subnet in it for its worker nodes VMs. This often leads to the problem that the route table gets not assigned at all to the AKS nodes subnet or that the assignment get removed/overwritten in subsequently re-deployments of the IaC code resp. the Azure virtual network. But when the route table is not assigned to the AKS nodes subnet it will not have any effect and the routing between the Pods is broken which in turns leads to very strange errors and behaviors. While there are probably a tons of other reasons why the routing table not gets or keeps correctly assigned to the AKS nodes subnet, the following two are the most common which I experienced.
