@@ -59,7 +59,6 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sitecontent
           path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy-github-pages:
@@ -82,10 +81,8 @@ jobs:
     needs: build
     steps:
       - uses: actions/download-artifact@v4
-        with:
-          name: sitecontent
       - name: Display structure of downloaded files
-        run: ls -R github-pages
+        run: ls -laR
       - name: Deploy to Hostpoint
         run: |
           echo "🚀 Deploying to Hostpoint..."
