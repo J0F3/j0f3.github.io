@@ -56,11 +56,16 @@ jobs:
             \-\-disable-external \
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Upload site artifact
+      - name: Upload github pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site${{ steps.pages.outputs.base_path }}"
+
+      - name: Upload site content artifact
         uses: actions/upload-artifact@v4
         with:
-          name: site-content
           path: "_site${{ steps.pages.outputs.base_path }}"
+          name: site-content
 
   deploy-github-pages:
     environment:
@@ -72,8 +77,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment-github-pages
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: site-content
 
   deploy-hostpoint:
     environment:
@@ -86,7 +89,7 @@ jobs:
         with:
           name: site-content
       - name: Display structure of downloaded files
-        run: ls -R site-content
+        run: ls -laR
       - name: Deploy to Hostpoint
         id: deploy-hostpoint
         run: |
