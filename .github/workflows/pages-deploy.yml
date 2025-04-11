@@ -82,5 +82,12 @@ jobs:
     steps:
         - name: Deploy to GitHub Pages
           run: |
-            echo "Deploying to Hostpoint..."
-            scp -r -i ${{ secrets.SSH_KEY }} ./* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+            echo "🚀 Deploying to Hostpoint..."
+            echo "🔑 Configuring ssh key..." &&
+            eval $(ssh-agent -s) &&
+            ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
+            echo "🔐 Added ssh key";
+            echo "🚚 Uploading blog conent via scp..." &&
+            scp -r ./* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+            echo "🙌 Uploaded done!"
+            echo "🚀 Deployment done!"
