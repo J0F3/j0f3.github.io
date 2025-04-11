@@ -80,6 +80,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
       - name: Deploy to Hostpoint
         run: |
           echo "🚀 Deploying to Hostpoint..."
