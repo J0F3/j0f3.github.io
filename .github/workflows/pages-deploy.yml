@@ -80,14 +80,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-        - name: Deploy to GitHub Pages
-          run: |
-            echo "🚀 Deploying to Hostpoint..."
-            echo "🔑 Configuring ssh key..." &&
-            eval $(ssh-agent -s) &&
-            ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
-            echo "🔐 Added ssh key";
-            echo "🚚 Uploading blog conent via scp..." &&
-            scp -r ./* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
-            echo "🙌 Uploaded done!"
-            echo "🚀 Deployment done!"
+      - name: Deploy to Hostpoint
+        run: |
+          echo "🚀 Deploying to Hostpoint..."
+          echo "🔑 Configuring ssh key..." &&
+          eval $(ssh-agent -s) &&
+          ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
+          echo "🔐 Added ssh key";
+          echo "🚚 Uploading blog conent via scp..." &&
+          ls -la
+          scp -r _site/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+          echo "🙌 Upload done!"
+          echo "🚀 Deployment done!"
