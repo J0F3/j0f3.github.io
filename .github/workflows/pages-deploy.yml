@@ -101,6 +101,6 @@ jobs:
           ssh-add <(echo "${{ secrets.SSH_KEY }}")
           echo "🔐 Added ssh key";
           echo "📦 Uploading site content..."
-          rsync -artzv --delete -e "ssh -o StrictHostKeyChecking=no" _site/ ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+          rsync -artzv --delete -e "ssh -o StrictHostKeyChecking=no" _site/ ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud
           echo "🙌 Upload done!"
           echo "🚀 Deployment done!"
