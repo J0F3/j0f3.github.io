@@ -88,6 +88,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: site-content
+          path: _site
+          
       - name: Display structure of downloaded files
         run: ls -laR
       - name: Deploy to Hostpoint
@@ -99,8 +101,7 @@ jobs:
           ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
           echo "🔐 Added ssh key";
           echo "📦 Uploading blog conent via scp..." &&
-          ls -la github-pages
           echo "${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test"
-          scp -r github-pages/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+          scp -r _site/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
           echo "🙌 Upload done!"
           echo "🚀 Deployment done!"
