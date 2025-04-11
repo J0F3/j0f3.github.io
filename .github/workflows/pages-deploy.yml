@@ -90,8 +90,9 @@ jobs:
           eval $(ssh-agent -s) &&
           ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
           echo "🔐 Added ssh key";
-          echo "🚚 Uploading blog conent via scp..." &&
-          ls -la 
+          echo "📦 Uploading blog conent via scp..." &&
+          ls -la github-pages
+          echo "${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test"
           scp -r github-pages/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
           echo "🙌 Upload done!"
           echo "🚀 Deployment done!"
