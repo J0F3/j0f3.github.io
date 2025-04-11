@@ -96,12 +96,13 @@ jobs:
         id: deploy-hostpoint
         run: |
           echo "🚀 Deploying to Hostpoint..."
-          echo "🔑 Configuring ssh key..." &&
-          eval $(ssh-agent -s) &&
-          ssh-add <(echo "${{ secrets.SSH_KEY }}") && 
+          echo "🔑 Configuring ssh key..."
+          eval $(ssh-agent -s)
+          ssh-add <(echo "${{ secrets.SSH_KEY }}")
+          ssh-add -l
           echo "🔐 Added ssh key";
-          echo "📦 Uploading blog conent via scp..." &&
+          echo "📦 Uploading blog conent via scp..."
           echo "${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test"
-          scp -r _site/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
+          scp -o "StrictHostKeyChecking no" -r _site/* ${{ vars.USERNAME }}@${{ vars.HOST }}:/home/${{ vars.USERNAME }}/www/jfe.cloud/test
           echo "🙌 Upload done!"
           echo "🚀 Deployment done!"
