@@ -59,19 +59,21 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-artifact@v4
         with:
+          name: site-content
           path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy-github-pages:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment-github-pages.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deployment-github-pages
         uses: actions/deploy-pages@v4
-
+        with:
+          artifact_name: site-content
 
   deploy-hostpoint:
     environment:
@@ -81,9 +83,12 @@ jobs:
     needs: build
     steps:
       - uses: actions/download-artifact@v4
+        with:
+          name: site-content
       - name: Display structure of downloaded files
-        run: ls -laR
+        run: ls -R site-content
       - name: Deploy to Hostpoint
+        id: deploy-hostpoint
         run: |
           echo "🚀 Deploying to Hostpoint..."
           echo "🔑 Configuring ssh key..." &&
