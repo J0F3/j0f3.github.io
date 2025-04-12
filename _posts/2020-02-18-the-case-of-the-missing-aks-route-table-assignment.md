@@ -7,6 +7,7 @@ header:
 toc: true
 toc_label: "In this post"
 date: 2020-02-18
+categories: [Azure, AKS]
 tags:
   - Microsoft Azure
   - AKS
