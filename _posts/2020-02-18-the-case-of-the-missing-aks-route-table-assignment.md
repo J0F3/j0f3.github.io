@@ -61,9 +61,10 @@ You can locate the automatically created, 'node resource group' in the same subs
 {: .prompt-warning}
 
 ## That's fine, what could possibly go wrong
+
 Well as long as you just deploy a default configuration with the basic/kubenet networking option selected you may have never a problem with the route table. The "fun" begins as soon as you want to use your own Azure virtual network for the AKS cluster and use IaC tools like Terraform or ARM templates for the deployment (what you of course should do). The main source of the problem is that the Azure virtual network is not anymore created and fully controlled by ASK itself, much more it is now created by you resp. your IaC code and AKS will just use a specified subnet in it for its worker nodes VMs. This often leads to the problem that the route table gets not assigned at all to the AKS nodes subnet or that the assignment get removed/overwritten in subsequently re-deployments of the IaC code resp. the Azure virtual network. But when the route table is not assigned to the AKS nodes subnet it will not have any effect and the routing between the Pods is broken which in turns leads to very strange errors and behaviors. While there are probably a tons of other reasons why the routing table not gets or keeps correctly assigned to the AKS nodes subnet, the following two are the most common which I experienced.
 
-![](/assets/images/aks-routing-table-vnet.png)
+![routing table connected to subnet](/assets/images/aks-routing-table-vnet.png)
 
 ### 1. The missing permission
 
